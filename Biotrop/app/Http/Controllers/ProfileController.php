@@ -25,4 +25,15 @@ class ProfileController extends Controller
     {
         return view('profile');
     }
+
+    public function profile($id)
+    {
+        $user = User::find($id);
+        // Redirect to user list if updating user wasn't existed
+        if ($user == null || count($user) == 0) {
+            return redirect()->intended('/profile');
+        }
+
+        return view('profile', ['user' => $user]);
+    }
 }

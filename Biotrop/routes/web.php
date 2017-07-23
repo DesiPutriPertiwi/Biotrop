@@ -24,8 +24,8 @@ Route::get('/profile', 'ProfileController@index');
 Route::post('user-management/search', 'UserManagementController@search')->name('user-management.search');
 Route::resource('user-management', 'UserManagementController');
 
-Route::resource('invasive-management', 'InvasiveController');
-Route::post('invasive-management/search', 'InvasiveController@search')->name('invasive.search');
+Route::resource('invasive', 'InvasiveController');
+Route::post('invasive/search', 'InvasiveController@search')->name('invasive.search');
 
 Route::resource('system-management/department', 'DepartmentController');
 Route::post('system-management/department/search', 'DepartmentController@search')->name('department.search');

@@ -26,9 +26,7 @@
           'oldVals' => [isset($searchingVals) ? $searchingVals['username'] : '', isset($searchingVals) ? $searchingVals['firstname'] : '']])
           @endcomponent
           </br>
-          @component('layouts.two-cols-search-row', ['items' => ['Last Name', 'Department'],
-          'oldVals' => [isset($searchingVals) ? $searchingVals['lastname'] : '', isset($searchingVals) ? $searchingVals['department'] : '']])
-          @endcomponent
+
         @endcomponent
       </form>
     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -55,14 +53,16 @@
                     <form class="row" method="POST" action="{{ route('user-management.destroy', ['id' => $user->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('user-management.edit', ['id' => $user->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
-                        Update
+                        <a href="{{ route('user-management.edit', ['id' => $user->id]) }}" class="btn btn-warning ">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
+                        
                         @if ($user->username != Auth::user()->username)
-                         <button type="submit" class="btn btn-danger col-sm-3 col-xs-5 btn-margin">
-                          Delete
+                         <button type="submit" class="btn btn-danger ">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>
                         @endif
+
                     </form>
                   </td>
               </tr>

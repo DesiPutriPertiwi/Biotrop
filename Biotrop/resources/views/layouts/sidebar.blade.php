@@ -7,12 +7,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{ asset("/bower_components/AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image">
+          <img src="{{ asset("/bower_components/AdminLTE/dist/img/avatar6.png") }}" class="img-picture" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{ Auth::user()->name}}</p>
+          <p><h4>{{ Auth::user()->username}}</h4></p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
 
@@ -32,7 +31,7 @@
       <ul class="sidebar-menu">
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="{{ url('employee-management') }}"><i class="fa fa-file-text"></i> <span>IAS Management</span></a></li>
+        <li><a href="{{ url('invasive') }}"><i class="fa fa-file-text"></i> <span>IAS Management</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-file-text"></i> <span>Herbarium Management</span>
             <span class="pull-right-container">
@@ -41,7 +40,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('herbarium-management/weedherba') }}">Weed Herbarium</a></li>
-            <li><a href="{{ url('system-management/forestherba') }}">Forest Herbarium</a></li>
+            <li><a href="{{ url('herbarium-management/forestherba') }}">Forest Herbarium</a></li>
             <li><a href="{{ url('system-management/country') }}">Country</a></li>
             <li><a href="{{ url('system-management/state') }}">State</a></li>
             <li><a href="{{ url('system-management/city') }}">City</a></li>
