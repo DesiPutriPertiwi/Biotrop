@@ -8,8 +8,8 @@
             <div class="col-sm-8">
               <h3 class="box-title">List of invasive</h3>
             </div>
-            <div class="col-sm-8 text-right">
-              <a class="btn btn-primary" href="{{ route('invasive-management.create') }}">Add new collection</a>
+            <div class="col-sm-4 text-right">
+              <a class="btn btn-primary" href="{{ route('invasive.create') }}">Add new collection</a>
             </div>
           </div>
         </div>
@@ -20,15 +20,16 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6"></div>
       </div>
-      <form method="POST" action="{{ route('invasive-management.search') }}">
+      <form method="POST" action="{{ route('invasive.search') }}">
          {{ csrf_field() }}
-         @component('layouts.search', ['title' => 'Search'])
-          @component('layouts.two-cols-search-row', ['items' => ['User Name', 'First Name'],'oldVals' => [isset($searchingVals) ? $searchingVals['username'] : '', isset($searchingVals) ? $searchingVals['firstname'] : '']])
-          @endcomponent
-          </br>
-          @component('layouts.two-cols-search-row', ['items' => ['Last Name', 'Department'],'oldVals' => [isset($searchingVals) ? $searchingVals['lastname'] : '', isset($searchingVals) ? $searchingVals['department'] : '']])
-          @endcomponent
-        @endcomponent
+           <div class="input-group">
+             <input type="text" name="q" class="form-control" placeholder="Search...">
+                 <span class="input-group-btn">
+                   <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                   </button>
+                 </span>
+           </div>
+         </form>
       </form>
     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
       <div class="row">
@@ -51,15 +52,15 @@
                   <td class="hidden-xs">{{ $user->firstname }}</td>
                   <td class="hidden-xs">{{ $user->lastname }}</td>
                   <td>
-                    <form class="row" method="POST" action="{{ route('user-management.destroy', ['id' => $user->id]) }}" onsubmit = "return confirm('Are you sure?')">
+                    <form class="row" method="POST" action="{{ route('invasive.destroy', ['id' => $user->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('user-management.edit', ['id' => $user->id]) }}" class="btn btn-warning col-sm-3 col-xs-5 btn-margin">
-                        Update
+                        <a href="{{ route('user-management.edit', ['id' => $user->id]) }}" class="btn btn-warning">
+                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                         @if ($user->username != Auth::user()->username)
-                         <button type="submit" class="btn btn-danger col-sm-3 col-xs-5 btn-margin">
-                          Delete
+                         <button type="submit" class="btn btn-danger">
+                          <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>
                         @endif
                     </form>

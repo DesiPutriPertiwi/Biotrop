@@ -88,7 +88,7 @@ desired effect
                                     <i class="glyphicon glyphicon-leaf fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><h2>100</h2></div>
+                                    <div class="huge"><h2>{{count(Auth::user())}}</h2></div>
                                     <div><h4>Weed Herbarium</h4></div>
                                 </div>
                             </div>

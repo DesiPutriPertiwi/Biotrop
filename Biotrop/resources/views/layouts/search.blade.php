@@ -11,7 +11,7 @@
     {{ $slot }}
   </div>
   <!-- /.box-body -->
-  <div class="box-footer">
+  <div class="box-footer  text-right">
     <button type="submit" class="btn btn-primary">
       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
       Search
