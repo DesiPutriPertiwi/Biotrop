@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2017 at 05:59 AM
+-- Generation Time: Jul 24, 2017 at 04:16 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.0.21
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `herbarium`
+-- Database: `biotrop`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `city` (
   `id_city` int(11) NOT NULL,
-  `name_city` varchar(50) NOT NULL
+  `name_city` varchar(50) NOT NULL,
+  `province_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -123,19 +124,7 @@ CREATE TABLE `location` (
   `latitude` geometrycollection NOT NULL,
   `longitude` geometrycollection NOT NULL,
   `atitude` geometrycollection NOT NULL,
-  `negara_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `negara`
---
-
-CREATE TABLE `negara` (
-  `id_negara` int(11) NOT NULL,
-  `name_negara` varchar(255) NOT NULL,
-  `provinsi_id` int(11) NOT NULL
+  `city_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -153,13 +142,13 @@ CREATE TABLE `ordo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provinsi`
+-- Table structure for table `province`
 --
 
-CREATE TABLE `provinsi` (
-  `id_provinsi` int(11) NOT NULL,
-  `name_provinsi` text NOT NULL,
-  `city_id` int(30) NOT NULL
+CREATE TABLE `province` (
+  `id_province` int(11) NOT NULL,
+  `name_province` text NOT NULL,
+  `state_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -229,6 +218,17 @@ CREATE TABLE `spesies` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `state`
+--
+
+CREATE TABLE `state` (
+  `id_state` int(11) NOT NULL,
+  `name_state` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `type_spesimen`
 --
 
@@ -241,22 +241,29 @@ CREATE TABLE `type_spesimen` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `username` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `password` varchar(191) NOT NULL,
+  `firstname` varchar(191) NOT NULL,
+  `lastname` varchar(191) NOT NULL,
   `remember_token` varchar(100) NOT NULL,
-  `delete_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `create_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `update_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `type_user` int(1) NOT NULL
+  `deleted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `lastname`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(2, 'admin', 'admin@gmail.com', 'admin', 'Mr', '$2y$10$Q62AXWNku7OUIQEiB0SaMuW01.RnPpcUmOXz7uyS2.kc3FTDgtzIq', 'lMKYeKXUZu0qtm3B11xoCp4cBfk92F3lREKPl3v140J9Hw3tOwU4EpDRxIMB', '2017-07-21 08:24:08', '2017-07-20 23:54:32', '2017-07-20 23:54:32'),
+(3, 'admin', 'admin@gmail.com', 'admin', 'Mr', '$2y$10$97vcr0dlK9MgyfB0u5kBrOoETLlzZehr9r9xlObuJfwbtXOTUrBzS', 'Z1Bxrly22Y', '2017-07-21 07:09:51', '2017-07-21 00:09:51', '2017-07-21 00:09:51');
 
 -- --------------------------------------------------------
 
@@ -279,7 +286,8 @@ CREATE TABLE `vernacular` (
 -- Indexes for table `city`
 --
 ALTER TABLE `city`
-  ADD PRIMARY KEY (`id_city`);
+  ADD PRIMARY KEY (`id_city`),
+  ADD KEY `province_id` (`province_id`);
 
 --
 -- Indexes for table `class`
@@ -324,14 +332,7 @@ ALTER TABLE `habitus`
 --
 ALTER TABLE `location`
   ADD PRIMARY KEY (`id_location`),
-  ADD KEY `negara_id` (`negara_id`);
-
---
--- Indexes for table `negara`
---
-ALTER TABLE `negara`
-  ADD PRIMARY KEY (`id_negara`),
-  ADD KEY `provinsi_id` (`provinsi_id`);
+  ADD KEY `location_ibfk_1` (`city_id`);
 
 --
 -- Indexes for table `ordo`
@@ -341,11 +342,11 @@ ALTER TABLE `ordo`
   ADD KEY `class_id` (`class_id`);
 
 --
--- Indexes for table `provinsi`
+-- Indexes for table `province`
 --
-ALTER TABLE `provinsi`
-  ADD PRIMARY KEY (`id_provinsi`),
-  ADD KEY `provinsi_ibfk_1` (`city_id`);
+ALTER TABLE `province`
+  ADD PRIMARY KEY (`id_province`),
+  ADD KEY `state_id` (`state_id`);
 
 --
 -- Indexes for table `speciment_herbarium`
@@ -378,6 +379,12 @@ ALTER TABLE `spesies`
   ADD KEY `spesies_ibfk_4` (`vernacular_id`);
 
 --
+-- Indexes for table `state`
+--
+ALTER TABLE `state`
+  ADD PRIMARY KEY (`id_state`);
+
+--
 -- Indexes for table `type_spesimen`
 --
 ALTER TABLE `type_spesimen`
@@ -385,9 +392,9 @@ ALTER TABLE `type_spesimen`
   ADD KEY `speciment_id` (`speciment_id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `users`
 --
-ALTER TABLE `user`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -401,13 +408,19 @@ ALTER TABLE `vernacular`
 --
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `city`
+--
+ALTER TABLE `city`
+  ADD CONSTRAINT `city_ibfk_1` FOREIGN KEY (`province_id`) REFERENCES `province` (`id_province`);
 
 --
 -- Constraints for table `familly`
@@ -425,13 +438,7 @@ ALTER TABLE `genus`
 -- Constraints for table `location`
 --
 ALTER TABLE `location`
-  ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`negara_id`) REFERENCES `negara` (`id_negara`);
-
---
--- Constraints for table `negara`
---
-ALTER TABLE `negara`
-  ADD CONSTRAINT `negara_ibfk_1` FOREIGN KEY (`provinsi_id`) REFERENCES `provinsi` (`id_provinsi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id_city`);
 
 --
 -- Constraints for table `ordo`
@@ -440,10 +447,10 @@ ALTER TABLE `ordo`
   ADD CONSTRAINT `ordo_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id_class`);
 
 --
--- Constraints for table `provinsi`
+-- Constraints for table `province`
 --
-ALTER TABLE `provinsi`
-  ADD CONSTRAINT `provinsi_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id_city`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `province`
+  ADD CONSTRAINT `province_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `state` (`id_state`);
 
 --
 -- Constraints for table `speciment_herbarium`
@@ -452,7 +459,7 @@ ALTER TABLE `speciment_herbarium`
   ADD CONSTRAINT `speciment_herbarium_ibfk_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id_collector`),
   ADD CONSTRAINT `speciment_herbarium_ibfk_2` FOREIGN KEY (`location_id`) REFERENCES `location` (`id_location`),
   ADD CONSTRAINT `speciment_herbarium_ibfk_3` FOREIGN KEY (`spesies_id`) REFERENCES `spesies` (`id_species`),
-  ADD CONSTRAINT `speciment_herbarium_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `speciment_herbarium_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `speciment_ias`
@@ -461,7 +468,7 @@ ALTER TABLE `speciment_ias`
   ADD CONSTRAINT `speciment_ias_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `location` (`id_location`),
   ADD CONSTRAINT `speciment_ias_ibfk_2` FOREIGN KEY (`spesies_id`) REFERENCES `spesies` (`id_species`),
   ADD CONSTRAINT `speciment_ias_ibfk_3` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id_collector`),
-  ADD CONSTRAINT `speciment_ias_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `speciment_ias_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `spesies`
