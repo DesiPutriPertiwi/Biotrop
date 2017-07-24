@@ -15,48 +15,48 @@ CREATE TABLE `users` (
 	`firstname` varchar(191) NOT NULL,
 	`lastname` varchar(191) NOT NULL,
 	`remember_token` varchar(191) NOT NULL,
-	`deleted_at` TIMESTAMP NOT NULL AUTO_INCREMENT,
-	`created_at` TIMESTAMP NOT NULL AUTO_INCREMENT,
-	`update_at` TIMESTAMP NOT NULL AUTO_INCREMENT,
+	`deleted_at` TIMESTAMP NOT NULL,
+	`created_at` TIMESTAMP NOT NULL,
+	`update_at` TIMESTAMP NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `speciment_herbarium` (
 	`id_herbarium` INT NOT NULL AUTO_INCREMENT,
-	`date` TIMESTAMP NOT NULL AUTO_INCREMENT,
+	`date` TIMESTAMP NOT NULL,
 	`status_herbarium` BOOLEAN NOT NULL,
 	`name_herbarium` varchar(255) NOT NULL,
 	`number_herbarium` INT NOT NULL,
 	`label_herbarium` varchar(255) NOT NULL,
 	`type_herbarium` BOOLEAN NOT NULL,
 	`status_vefiedData` BOOLEAN NOT NULL,
-	`time_verifiedData` TIMESTAMP NOT NULL AUTO_INCREMENT,
-	`utilization` TEXT(600) NOT NULL AUTO_INCREMENT,
-	`comment_herbarium` TEXT(600) NOT NULL AUTO_INCREMENT,
-	`user_id` INT NOT NULL AUTO_INCREMENT,
-	`species_id` INT NOT NULL AUTO_INCREMENT,
-	`collector_id` INT NOT NULL AUTO_INCREMENT,
-	`location_id` INT NOT NULL AUTO_INCREMENT,
+	`time_verifiedData` TIMESTAMP NOT NULL,
+	`utilization` TEXT(600) NOT NULL,
+	`comment_herbarium` TEXT(600) NOT NULL,
+	`collector_id` INT NOT NULL,
+	`location_id` INT NOT NULL,
+	`species_id` INT NOT NULL,
+	`user_id` INT NOT NULL,
 	PRIMARY KEY (`id_herbarium`)
 );
 
 CREATE TABLE `speciment_ias` (
 	`id_ias` INT NOT NULL AUTO_INCREMENT,
-	`date` DATETIME NOT NULL AUTO_INCREMENT,
-	`status_ias` BOOLEAN NOT NULL AUTO_INCREMENT,
-	`name_ias` varchar(255) NOT NULL AUTO_INCREMENT,
-	`number_ias` INT NOT NULL AUTO_INCREMENT,
-	`label_ias` varchar(255) NOT NULL AUTO_INCREMENT,
-	`type_ias` BOOLEAN NOT NULL AUTO_INCREMENT,
-	`status_vefiedData` BOOLEAN NOT NULL AUTO_INCREMENT,
-	`time_verifiedData` TIMESTAMP NOT NULL AUTO_INCREMENT,
+	`date` DATETIME NOT NULL,
+	`status_ias` BOOLEAN NOT NULL,
+	`name_ias` varchar(255) NOT NULL,
+	`number_ias` INT NOT NULL,
+	`label_ias` varchar(255) NOT NULL,
+	`type_ias` BOOLEAN NOT NULL,
+	`status_vefiedData` BOOLEAN NOT NULL,
+	`time_verifiedData` TIMESTAMP NOT NULL,
 	`imapact_ias` TEXT(600) NOT NULL,
 	`control_ias` TEXT(600) NOT NULL,
-	`comment_ias` TEXT(600) NOT NULL AUTO_INCREMENT,
-	`user_id` INT NOT NULL AUTO_INCREMENT,
-	`species_id` INT NOT NULL AUTO_INCREMENT,
-	`collector_id` INT NOT NULL AUTO_INCREMENT,
-	`location_id` INT NOT NULL AUTO_INCREMENT,
+	`comment_ias` TEXT(600) NOT NULL,
+	`collector_id` INT NOT NULL,
+	`location_id` INT NOT NULL,
+	`species_id` INT NOT NULL,
+	`user_id` INT NOT NULL,
 	PRIMARY KEY (`id_ias`)
 );
 
@@ -90,21 +90,21 @@ CREATE TABLE `district` (
 
 CREATE TABLE `city` (
 	`id_city` INT NOT NULL AUTO_INCREMENT,
-	`name_city` varchar NOT NULL,
+	`name_city` varchar(100) NOT NULL,
 	`province_id` INT NOT NULL,
 	PRIMARY KEY (`id_city`)
 );
 
 CREATE TABLE `province` (
 	`id_province` INT NOT NULL AUTO_INCREMENT,
-	`name_province` varchar NOT NULL,
+	`name_province` varchar(100) NOT NULL,
 	`state_id` INT NOT NULL,
 	PRIMARY KEY (`id_province`)
 );
 
 CREATE TABLE `state` (
 	`id_state` INT NOT NULL AUTO_INCREMENT,
-	`name_state` varchar NOT NULL,
+	`name_state` varchar(100) NOT NULL,
 	PRIMARY KEY (`id_state`)
 );
 
@@ -176,21 +176,21 @@ ALTER TABLE `type _spesimen` ADD CONSTRAINT `type _spesimen_fk0` FOREIGN KEY (`s
 
 ALTER TABLE `type _spesimen` ADD CONSTRAINT `type _spesimen_fk1` FOREIGN KEY (`ias_id`) REFERENCES `speciment_ias`(`id_ias`);
 
-ALTER TABLE `speciment_herbarium` ADD CONSTRAINT `speciment_herbarium_fk0` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
+ALTER TABLE `speciment_herbarium` ADD CONSTRAINT `speciment_herbarium_fk0` FOREIGN KEY (`collector_id`) REFERENCES `collector`(`id_collector`);
 
-ALTER TABLE `speciment_herbarium` ADD CONSTRAINT `speciment_herbarium_fk1` FOREIGN KEY (`species_id`) REFERENCES `species`(`id_species`);
+ALTER TABLE `speciment_herbarium` ADD CONSTRAINT `speciment_herbarium_fk1` FOREIGN KEY (`location_id`) REFERENCES `location`(`id_location`);
 
-ALTER TABLE `speciment_herbarium` ADD CONSTRAINT `speciment_herbarium_fk2` FOREIGN KEY (`collector_id`) REFERENCES `collector`(`id_collector`);
+ALTER TABLE `speciment_herbarium` ADD CONSTRAINT `speciment_herbarium_fk2` FOREIGN KEY (`species_id`) REFERENCES `species`(`id_species`);
 
-ALTER TABLE `speciment_herbarium` ADD CONSTRAINT `speciment_herbarium_fk3` FOREIGN KEY (`location_id`) REFERENCES `location`(`id_location`);
+ALTER TABLE `speciment_herbarium` ADD CONSTRAINT `speciment_herbarium_fk3` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 
-ALTER TABLE `speciment_ias` ADD CONSTRAINT `speciment_ias_fk0` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
+ALTER TABLE `speciment_ias` ADD CONSTRAINT `speciment_ias_fk0` FOREIGN KEY (`collector_id`) REFERENCES `collector`(`id_collector`);
 
-ALTER TABLE `speciment_ias` ADD CONSTRAINT `speciment_ias_fk1` FOREIGN KEY (`species_id`) REFERENCES `species`(`id_species`);
+ALTER TABLE `speciment_ias` ADD CONSTRAINT `speciment_ias_fk1` FOREIGN KEY (`location_id`) REFERENCES `location`(`id_location`);
 
-ALTER TABLE `speciment_ias` ADD CONSTRAINT `speciment_ias_fk2` FOREIGN KEY (`collector_id`) REFERENCES `collector`(`id_collector`);
+ALTER TABLE `speciment_ias` ADD CONSTRAINT `speciment_ias_fk2` FOREIGN KEY (`species_id`) REFERENCES `species`(`id_species`);
 
-ALTER TABLE `speciment_ias` ADD CONSTRAINT `speciment_ias_fk3` FOREIGN KEY (`location_id`) REFERENCES `location`(`id_location`);
+ALTER TABLE `speciment_ias` ADD CONSTRAINT `speciment_ias_fk3` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 
 ALTER TABLE `species` ADD CONSTRAINT `species_fk0` FOREIGN KEY (`genus_id`) REFERENCES `genus`(`id_genus`);
 
