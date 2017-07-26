@@ -110,7 +110,7 @@
                             <label for="description" class="col-md-3 control-label">Description</label>
 
                             <div class="col-md-8">
-                                <input id="description" type="text" class="form-control" name="dscription" value="{{ old('description') }}" required autofocus>
+                                <textarea id="description" rows=="7" cols="5" oneKeyPress class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
 
                                 @if ($errors->has('description'))
                                     <span class="help-block">
@@ -119,29 +119,15 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-3 control-label">Invaded Habitat</label>
+                        <div class="form-group{{ $errors->has('invaded_habitat') ? ' has-error' : '' }}">
+                            <label for="invaded_habitat" class="col-md-3 control-label">Invaded Habitat</label>
 
                             <div class="col-md-8">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                                <textarea id="invaded_habitat" rows=="7" cols="5" oneKeyPress class="form-control" name="invaded_habitat" value="{{ old('invaded_habitat') }}" required autofocus> </textarea>
 
-                                @if ($errors->has('username'))
+                                @if ($errors->has('invaded_habitat'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-3 control-label">Distribution</label>
-
-                            <div class="col-md-8">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
-
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
+                                        <strong>{{ $errors->first('invaded_habitat') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -166,11 +152,24 @@
                           </div>
                         </div>
                       <div class="col-md-6">
+                          <div class="form-group{{ $errors->has('distribution') ? ' has-error' : '' }}">
+                            <label for="distribution" class="col-md-3 control-label">Distribution</label>
+
+                              <div class="col-md-8">
+                                <textarea id="distribution" rows="7" cols="3" oneKeyPressclass class="form-control" name="distribution" value="{{ old('distribution') }}" required autofocus></textarea>
+
+                                  @if ($errors->has('distribution'))
+                                    <span class="help-block">
+                                      <strong>{{ $errors->first('distribution') }}</strong>
+                                    </span>
+                                  @endif
+                              </div>
+                            </div>
                         <div class="form-group{{ $errors->has('ecology') ? ' has-error' : '' }}">
                             <label for="ecology" class="col-md-3 control-label">Ecology</label>
 
                             <div class="col-md-8">
-                                <input id="ecology" type="text" class="form-control" name="ecology" value="{{ old('ecology') }}" required autofocus>
+                                <textarea id="ecology" rows=="7" cols="5" oneKeyPress class="form-control" name="ecology" value="{{ old('ecology') }}" required autofocus></textarea>
 
                                 @if ($errors->has('ecology'))
                                     <span class="help-block">
@@ -183,7 +182,7 @@
                             <label for="chemical_ctrl" class="col-md-3 control-label">Chemical Control</label>
 
                             <div class="col-md-8">
-                                <input id="chemical_ctrl" type="text" class="form-control" name="chemical_ctrl" value="{{ old('chemical_ctrl') }}" required autofocus>
+                                <textarea id="chemical_ctrl" rows=="7" cols="5" oneKeyPress class="form-control" name="chemical_ctrl" value="{{ old('chemical_ctrl') }}" required autofocus></textarea>
 
                                 @if ($errors->has('chemical_ctrl'))
                                     <span class="help-block">
@@ -283,16 +282,16 @@
                                 @endif
                             </div>
                         </div>
-
+                    </div>
                         <div class="form-group">
-                            <div class="col-md-8 text-right">
+                            <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary">
                                     Create
                                 </button>
                             </div>
                       </div>
                     </form>
-                </div>
+
               <div>
         </div>
     </div>

@@ -32,9 +32,9 @@ class InvasiveController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
+        $speciment_ias = Ias::paginate(5);
 
-        return view('invasive/index', ['users' => $users]);
+        return view('invasive/index', ['speciment_ias' => $speciment_ias]);
     }
 
     /**
@@ -56,15 +56,15 @@ class InvasiveController extends Controller
     public function store(Request $request)
     {
         $this->validateInput($request);
-         User::create([
-            'username' => $request['username'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'firstname' => $request['firstname'],
-            'lastname' => $request['lastname']
+         Ias::create([
+            'date' => $request['date'],
+            'family_name' => $request['species_id'],
+            'genus_name' => $request['species_id'],
+            'species_name' => $request['species_id'],
+            'synonim' => $request['lastname']
         ]);
 
-        return redirect()->intended('/user-management');
+        return redirect()->intended('/invasive');
     }
 
     /**
@@ -89,7 +89,7 @@ class InvasiveController extends Controller
         $user = User::find($id);
         // Redirect to user list if updating user wasn't existed
         if ($user == null || count($user) == 0) {
-            return redirect()->intended('/invasive-management');
+            return redirect()->intended('/invasive');
         }
 
         return view('invasive/edit', ['user' => $user]);
