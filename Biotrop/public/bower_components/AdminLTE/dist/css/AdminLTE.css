@@ -19,7 +19,7 @@ body {
   height: 100%;
 }
 body {
-    background-image: url("background.jpeg");
+    background-image: url("background.jpg");
 }
 body {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -838,7 +838,7 @@ a:focus {
 }
 .control-sidebar-dark,
 .control-sidebar-dark + .control-sidebar-bg {
-  background: #e1ec38;
+  background: #222d32;
 }
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs {
   border-bottom: #1c2529;

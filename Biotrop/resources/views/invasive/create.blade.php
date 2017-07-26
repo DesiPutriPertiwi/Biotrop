@@ -11,20 +11,6 @@
               {{ csrf_field() }}
 
               <div class="col-md-6">
-
-                <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
-                  <label for="date" class="col-md-3 control-label">Date</label>
-                    <div class="col-md-8">
-                      <input id="date" type="date" class="form-control" name="date" value="{{ old('date') }}" required autofocus>
-
-                        @if ($errors->has('date'))
-                          <span class="help-block">
-                            <strong>{{ $errors->first('date') }}</strong>
-                          </span>
-                        @endif
-                  </div>
-              </div>
-
               <div class="form-group{{ $errors->has('family') ? ' has-error' : '' }}">
                   <label for="family" class="col-md-3 control-label">Family</label>
 
@@ -65,21 +51,21 @@
                             @endif
                         </div>
                   </div>
+                  <div class="form-group{{ $errors->has('synonim') ? ' has-error' : '' }}">
+                    <label for="synonim" class="col-md-3 control-label">Synonim</label>
+
+                        <div class="col-md-8">
+                          <input id="synonim" type="text" class="form-control"  placeholder="Enter Synonim"name="synonim" value="{{ old('synonim') }}" required autofocus>
+
+                            @if ($errors->has('synonim'))
+                              <span class="help-block">
+                                <strong>{{ $errors->first('synonim') }}</strong>
+                              </span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
                   <div class="col-md-6">
-                    <div class="form-group{{ $errors->has('synonim') ? ' has-error' : '' }}">
-                      <label for="synonim" class="col-md-3 control-label">Synonim</label>
-
-                          <div class="col-md-8">
-                            <input id="synonim" type="text" class="form-control"  placeholder="Enter Synonim"name="synonim" value="{{ old('synonim') }}" required autofocus>
-
-                              @if ($errors->has('synonim'))
-                                <span class="help-block">
-                                  <strong>{{ $errors->first('synonim') }}</strong>
-                                </span>
-                              @endif
-                          </div>
-                      </div>
 
                       <div class="form-group{{ $errors->has('common_name') ? ' has-error' : '' }}">
                           <label for="common_name" class="col-md-3 control-label">Common Name</label>
@@ -125,12 +111,10 @@
                                   </div>
                           </div>
                     </div>
-                    <div> ----- </div>
 
-                    <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                        <label for="description" class="col-md-3 control-label text-left">Description</label>
-
-                        <div class="col-md-8 text-left">
+                  <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                    <label for="description" class="col-md-3 control-label">Description</label>
+                      <div class="col-md-8">
                             <textarea id="description" rows="7" cols="3" oneKeyPress placeholder="Enter description" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
 
                             @if ($errors->has('description'))
@@ -199,35 +183,35 @@
                           <label for="preventioin" class="col-md-3 control-label">Prevention :</label>
 
                           <div class="col-md-8">
-                              <textarea id="prevention" rows="7" cols="5" oneKeyPress class="form-control" name="prevention" value="{{ old('prevention') }}" ></textarea>
+                              <textarea id="prevention" rows="7" cols="5" oneKeyPress  placeholder="Enter prevention"class="form-control" name="prevention" value="{{ old('prevention') }}" ></textarea>
                           </div>
                       </div>
                       <div class="form-group{{ $errors->has('utilization') ? ' has-error' : '' }}">
                           <label for="utilization" class="col-md-3 control-label">Uses :</label>
 
                           <div class="col-md-8">
-                              <textarea id="utilization"rows="7" cols="5" oneKeyPress class="form-control" name="utilization" value="{{ old('utilization') }}" ></textarea>
+                              <textarea id="utilization"rows="7" cols="5" oneKeyPress placeholder="Enter uses" class="form-control" name="utilization" value="{{ old('utilization') }}" ></textarea>
                           </div>
                       </div>
                       <div class="form-group{{ $errors->has('risk_analisis') ? ' has-error' : '' }}">
                           <label for="risk_analisis" class="col-md-3 control-label">Risk Analysis :</label>
 
                           <div class="col-md-8">
-                              <textarea id="risk_analisis" rows="7" cols="5" oneKeyPress class="form-control" name="risk_analisis" value="{{ old('risk_analisis') }}"></textarea>
+                              <textarea id="risk_analisis" rows="7" cols="5" oneKeyPress placeholder="Enter risk analysis" class="form-control" name="risk_analisis" value="{{ old('risk_analisis') }}"></textarea>
                           </div>
                       </div>
                       <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
                           <label for="contact" class="col-md-3 control-label">Contact Person :</label>
 
                           <div class="col-md-8">
-                              <textarea id="contact" rows="7" cols="5" oneKeyPress class="form-control" name="contact" value="{{ old('contact') }}"></textarea>
+                              <textarea id="contact" rows="7" cols="5" oneKeyPress placeholder="Enter contact person" class="form-control" name="contact" value="{{ old('contact') }}"></textarea>
                           </div>
                       </div>
                       <div class="form-group{{ $errors->has('reference') ? ' has-error' : '' }}">
                           <label for="reference" class="col-md-3 control-label">Reference :</label>
 
                           <div class="col-md-8">
-                              <textarea id="reference" rows="7" cols="5" oneKeyPress class="form-control" name="reference" value="{{ old('reference') }}" required autofocus></textarea>
+                              <textarea id="reference" rows="7" cols="5" oneKeyPress placeholder="Enter reference" class="form-control" name="reference" value="{{ old('reference') }}" required autofocus></textarea>
 
                               @if ($errors->has('reference'))
                                   <span class="help-block">
