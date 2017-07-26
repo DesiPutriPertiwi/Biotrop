@@ -19,6 +19,9 @@ body {
   height: 100%;
 }
 body {
+    background-image: url("background.jpeg");
+}
+body {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   overflow-x: hidden;
@@ -835,7 +838,7 @@ a:focus {
 }
 .control-sidebar-dark,
 .control-sidebar-dark + .control-sidebar-bg {
-  background: #222d32;
+  background: #e1ec38;
 }
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs {
   border-bottom: #1c2529;

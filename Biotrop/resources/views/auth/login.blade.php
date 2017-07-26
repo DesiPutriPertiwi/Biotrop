@@ -3,9 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row">
+      <script src='https://www.google.com/recaptcha/api.js'></script>
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading text-center"><h3>Selamat datang di Sistem Management Herbarium</h3>
+                <div class="panel-heading text-center"><h3>Selamat datang di Sistem Manajemen Herbarium</h3>
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
@@ -31,13 +32,28 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
 
-                                @if ($errors->has('password'))
+                               @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
+                              </div>
+                          </div>
+
+                        <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Captcha</label>
+
+                         <div class="col-md-6">
+                           <div class="g-recaptcha" data-sitekey="6LdXfyoUAAAAAKYjv2EKCuqip-Z7rkpVR-id6oLm"></div>
+                             {!! app('captcha')->display() !!}
+
+                             @if ($errors->has('g-recaptcha-response'))
+                                 <span class="help-block">
+                                     <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                 </span>
+                             @endif
+                         </div>
+                     </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -50,9 +66,7 @@
                         </div>
 
                         <div class="form-group">
-
                             <div class="col-md-8 col-md-offset-4 ">
-
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>

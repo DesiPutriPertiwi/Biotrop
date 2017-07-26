@@ -24,10 +24,23 @@ class LoginController extends Controller
      *
      * @var string
      */
+
+
     protected $redirectTo = '/dashboard';
     public function username(){
         return "username";
     }
+
+    public function loginPost($request)
+   {
+       $this->validate($request, [
+           'username' => 'required',
+           'password' => 'required',
+           'g-recaptcha-response' => 'required|captcha',
+       ]);
+       print('done');
+   }
+
      /**
      * Determine if the user has too many failed login attempts.
      *
