@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2017 at 04:30 AM
+-- Generation Time: Jul 26, 2017 at 10:03 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.0.21
 
@@ -31,7 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `author_identification` (
   `id_author` int(11) NOT NULL,
   `name_author` varchar(255) NOT NULL,
-  `date_identification` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `date_identification` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `phone_author` int(11) DEFAULT NULL,
+  `email_autror` varchar(255) DEFAULT NULL,
+  `institude_agency` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -84,17 +87,16 @@ CREATE TABLE `collector` (
   `tim_collector` varchar(255) DEFAULT NULL,
   `date_collection` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `number_collector` int(11) NOT NULL,
-  `contact` int(11) DEFAULT NULL,
   `nick_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `controll`
+-- Table structure for table `controll_ias`
 --
 
-CREATE TABLE `controll` (
+CREATE TABLE `controll_ias` (
   `id_controll` int(11) NOT NULL,
   `chemical_ctrl` text,
   `manual_ctrl` text,
@@ -261,7 +263,6 @@ CREATE TABLE `speciment_herbarium` (
 CREATE TABLE `speciment_ias` (
   `id_ias` int(11) NOT NULL,
   `name_ias` varchar(255) NOT NULL,
-  `type_ias` tinyint(1) NOT NULL,
   `impact_ias` text,
   `comment_ias` text,
   `location_id` int(11) NOT NULL,
@@ -272,7 +273,8 @@ CREATE TABLE `speciment_ias` (
   `utilization` text,
   `risk_analisis` text,
   `reference` text,
-  `verifiedData_id` int(11) NOT NULL
+  `verifiedData_id` int(11) NOT NULL,
+  `authorIdentification_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -314,15 +316,16 @@ CREATE TABLE `users` (
   `remember_token` varchar(191) NOT NULL,
   `deleted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `type_user` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `lastname`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(2, 'admin', 'admin@gmail.com', '$2y$10$L1cVoN18YGK3FYiUNtR4muLMs0N30Nzj1uChpkJGi4uCzSN.7rEHO', 'admin', 'biotrop', 'yvlwRFY9CcvZVuusGtbneJwTsPNSY4MAjSI5v9HhV7AFHcbLmVwqL4RNhfhc', '2017-07-25 16:36:40', '2017-07-24 00:26:37', '2017-07-25 09:36:40');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstname`, `lastname`, `remember_token`, `deleted_at`, `created_at`, `updated_at`, `type_user`) VALUES
+(2, 'admin', 'admin@gmail.com', '$2y$10$L1cVoN18YGK3FYiUNtR4muLMs0N30Nzj1uChpkJGi4uCzSN.7rEHO', 'admin', 'biotrop', 'yvlwRFY9CcvZVuusGtbneJwTsPNSY4MAjSI5v9HhV7AFHcbLmVwqL4RNhfhc', '2017-07-25 16:36:40', '2017-07-24 00:26:37', '2017-07-25 09:36:40', 0);
 
 -- --------------------------------------------------------
 
@@ -398,9 +401,9 @@ ALTER TABLE `collector`
   ADD PRIMARY KEY (`id_collector`);
 
 --
--- Indexes for table `controll`
+-- Indexes for table `controll_ias`
 --
-ALTER TABLE `controll`
+ALTER TABLE `controll_ias`
   ADD PRIMARY KEY (`id_controll`);
 
 --
@@ -488,7 +491,8 @@ ALTER TABLE `speciment_ias`
   ADD KEY `speciment_ias_fk2` (`species_id`),
   ADD KEY `speciment_ias_fk3` (`user_id`),
   ADD KEY `verifiedData_id` (`verifiedData_id`),
-  ADD KEY `control_id` (`control_id`);
+  ADD KEY `control_id` (`control_id`),
+  ADD KEY `speciment_ias_ibfk_5` (`authorIdentification_id`);
 
 --
 -- Indexes for table `state`
@@ -556,9 +560,9 @@ ALTER TABLE `class`
 ALTER TABLE `collector`
   MODIFY `id_collector` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `controll`
+-- AUTO_INCREMENT for table `controll_ias`
 --
-ALTER TABLE `controll`
+ALTER TABLE `controll_ias`
   MODIFY `id_controll` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `district`
@@ -709,7 +713,8 @@ ALTER TABLE `speciment_ias`
   ADD CONSTRAINT `speciment_ias_fk2` FOREIGN KEY (`species_id`) REFERENCES `species` (`id_species`),
   ADD CONSTRAINT `speciment_ias_fk3` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `speciment_ias_ibfk_2` FOREIGN KEY (`verifiedData_id`) REFERENCES `verified` (`id_verified`),
-  ADD CONSTRAINT `speciment_ias_ibfk_4` FOREIGN KEY (`control_id`) REFERENCES `controll` (`id_controll`);
+  ADD CONSTRAINT `speciment_ias_ibfk_4` FOREIGN KEY (`control_id`) REFERENCES `controll_ias` (`id_controll`),
+  ADD CONSTRAINT `speciment_ias_ibfk_5` FOREIGN KEY (`authorIdentification_id`) REFERENCES `author_identification` (`id_author`);
 
 --
 -- Constraints for table `vilage`
