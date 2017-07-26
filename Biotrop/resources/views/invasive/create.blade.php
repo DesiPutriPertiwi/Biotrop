@@ -29,7 +29,7 @@
                   <label for="family" class="col-md-3 control-label">Family</label>
 
                       <div class="col-md-8">
-                          <input id="family" type="text" class="form-control" name="family" value="{{ old('famly') }}" required>
+                          <input id="family" type="text" placeholder="Enter Family name" class="form-control" name="family" value="{{ old('famly') }}" required>
 
                             @if ($errors->has('family'))
                               <span class="help-block">
@@ -43,7 +43,7 @@
                     <label for="genus" class="col-md-3 control-label">Genus</label>
 
                       <div class="col-md-8">
-                        <input id="genus" type="text" class="form-control" name="genus" value="{{ old('genus') }}" required>
+                        <input id="genus" type="text" placeholder="Enter Genus name" class="form-control" name="genus" value="{{ old('genus') }}" required>
 
                             @if ($errors->has('genus'))
                               <span class="help-block">
@@ -56,7 +56,7 @@
                   <div class="form-group{{ $errors->has('species') ? ' has-error' : '' }}">
                     <label for="species" class="col-md-3 control-label">Species</label>
                         <div class="col-md-8">
-                            <input id="species" type="text" class="form-control" name="species" required>
+                            <input id="species" type="text" placeholder="Enter Species name" class="form-control" name="species" required>
 
                             @if ($errors->has('species'))
                               <span class="help-block">
@@ -71,7 +71,7 @@
                       <label for="synonim" class="col-md-3 control-label">Synonim</label>
 
                           <div class="col-md-8">
-                            <input id="synonim" type="text" class="form-control" name="synonim" value="{{ old('synonim') }}" required autofocus>
+                            <input id="synonim" type="text" class="form-control"  placeholder="Enter Synonim"name="synonim" value="{{ old('synonim') }}" required autofocus>
 
                               @if ($errors->has('synonim'))
                                 <span class="help-block">
@@ -85,7 +85,7 @@
                           <label for="common_name" class="col-md-3 control-label">Common Name</label>
 
                           <div class="col-md-8">
-                            <input id="common_name" type="text" class="form-control" name="common_name" value="{{ old('common_name') }}" required autofocus>
+                            <input id="common_name" type="text" placeholder="Enter common name" class="form-control" name="common_name" value="{{ old('common_name') }}" required autofocus>
                               @if ($errors->has('common_name'))
                                 <span class="help-block">
                                   <strong>{{ $errors->first('common_name') }}</strong>
@@ -98,7 +98,7 @@
                         <label for="origin" class="col-md-3 control-label">Origin</label>
 
                           <div class="col-md-8">
-                            <input id="origin" type="text" class="form-control" name="origin" value="{{ old('origin') }}" required autofocus>
+                            <input id="origin" type="text" placeholder="Enter origin" class="form-control" name="origin" value="{{ old('origin') }}" required autofocus>
 
                             @if ($errors->has('origin'))
                               <span class="help-block">
@@ -131,7 +131,7 @@
                         <label for="description" class="col-md-3 control-label text-left">Description</label>
 
                         <div class="col-md-8 text-left">
-                            <textarea id="description" rows="7" cols="3" oneKeyPress class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
+                            <textarea id="description" rows="7" cols="3" oneKeyPress placeholder="Enter description" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
 
                             @if ($errors->has('description'))
                                 <span class="help-block">
@@ -144,7 +144,7 @@
                         <label for="invaded_habitat" class="col-md-3 control-label">Invaded Habitat</label>
 
                         <div class="col-md-8">
-                            <textarea id="invaded_habitat" rows="7" cols="5" oneKeyPress class="form-control" name="invaded_habitat" value="{{ old('invaded_habitat') }}" required autofocus> </textarea>
+                            <textarea id="invaded_habitat" rows="7" cols="5" oneKeyPress placeholder="Enter invaded habitat" class="form-control" name="invaded_habitat" value="{{ old('invaded_habitat') }}" required autofocus> </textarea>
 
                             @if ($errors->has('invaded_habitat'))
                                 <span class="help-block">
@@ -158,7 +158,7 @@
                       <label for="distribution" class="col-md-3 control-label">Distribution</label>
 
                         <div class="col-md-8">
-                          <textarea id="distribution" rows="7" cols="3" oneKeyPressclass class="form-control" name="distribution" value="{{ old('distribution') }}" required autofocus></textarea>
+                          <textarea id="distribution" rows="7" cols="3" oneKeyPressclass placeholder="Enter distribution" class="form-control" name="distribution" value="{{ old('distribution') }}" required autofocus></textarea>
 
                             @if ($errors->has('distribution'))
                               <span class="help-block">
@@ -171,28 +171,28 @@
                         <label for="ecology" class="col-md-3 control-label">Ecology</label>
 
                         <div class="col-md-8">
-                            <textarea id="ecology" rows="7" cols="5" oneKeyPress class="form-control" name="ecology" value="{{ old('ecology') }}" ></textarea>
+                            <textarea id="ecology" rows="7" cols="5" oneKeyPress placeholder="Enter ecology" class="form-control" name="ecology" value="{{ old('ecology') }}" ></textarea>
                         </div>
                       </div>
                       <div class="form-group{{ $errors->has('chemical_ctrl') ? ' has-error' : '' }}">
                           <label for="chemical_ctrl" class="col-md-3 control-label">Chemical Control</label>
 
                           <div class="col-md-8">
-                              <textarea id="chemical_ctrl" rows="7" cols="5" oneKeyPress class="form-control" name="chemical_ctrl" value="{{ old('chemical_ctrl') }}" ></textarea>
+                              <textarea id="chemical_ctrl" rows="7" cols="5" oneKeyPress  placeholder="Enter chemical control"class="form-control" name="chemical_ctrl" value="{{ old('chemical_ctrl') }}" ></textarea>
                           </div>
                       </div>
                       <div class="form-group{{ $errors->has('manual_ctrl') ? ' has-error' : '' }}">
                           <label for="manual_ctrl" class="col-md-3 control-label">Mechanical/Manual Control</label>
 
                           <div class="col-md-8">
-                              <textarea id="manual_ctrl" rows="7" cols="5" oneKeyPress class="form-control" name="manual_ctrl" value="{{ old('manual_ctrl') }}" ></textarea>
+                              <textarea id="manual_ctrl" rows="7" cols="5" oneKeyPress placeholder="Enter manual control" class="form-control" name="manual_ctrl" value="{{ old('manual_ctrl') }}" ></textarea>
                           </div>
                       </div>
                       <div class="form-group{{ $errors->has('biological_ctrl') ? ' has-error' : '' }}">
                           <label for="biological_ctrl" class="col-md-3 control-label">Biological Control :</label>
 
                           <div class="col-md-8">
-                              <textarea id="biological_ctrl" rows="7" cols="5" oneKeyPress class="form-control" name="biological_ctrl" value="{{ old('biological_ctrl') }}"></textarea>
+                              <textarea id="biological_ctrl" rows="7" cols="5" oneKeyPress placeholder="Enter chemical control" class="form-control" name="biological_ctrl" value="{{ old('biological_ctrl') }}"></textarea>
                           </div>
                       </div>
                       <div class="form-group{{ $errors->has('prevention') ? ' has-error' : '' }}">
