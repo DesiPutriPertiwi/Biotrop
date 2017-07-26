@@ -65,74 +65,48 @@
                             @endif
                         </div>
                   </div>
+                </div>
+                  <div class="col-md-6">
+                    <div class="form-group{{ $errors->has('synonim') ? ' has-error' : '' }}">
+                      <label for="synonim" class="col-md-3 control-label">Synonim</label>
 
-                        <div class="form-group{{ $errors->has('synonim') ? ' has-error' : '' }}">
-                            <label for="synonim" class="col-md-3 control-label">Synonim</label>
+                          <div class="col-md-8">
+                            <input id="synonim" type="text" class="form-control" name="synonim" value="{{ old('synonim') }}" required autofocus>
 
-                            <div class="col-md-8">
-                                <input id="synonim" type="text" class="form-control" name="synonim" value="{{ old('synonim') }}" required autofocus>
+                              @if ($errors->has('synonim'))
+                                <span class="help-block">
+                                  <strong>{{ $errors->first('synonim') }}</strong>
+                                </span>
+                              @endif
+                          </div>
+                      </div>
 
-                                @if ($errors->has('synonim'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('synonim') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                      <div class="form-group{{ $errors->has('common_name') ? ' has-error' : '' }}">
+                          <label for="common_name" class="col-md-3 control-label">Common Name</label>
+
+                          <div class="col-md-8">
+                            <input id="common_name" type="text" class="form-control" name="common_name" value="{{ old('common_name') }}" required autofocus>
+                              @if ($errors->has('common_name'))
+                                <span class="help-block">
+                                  <strong>{{ $errors->first('common_name') }}</strong>
+                                </span>
+                              @endif
+                          </div>
+                      </div>
+
+                      <div class="form-group{{ $errors->has('origin') ? ' has-error' : '' }}">
+                        <label for="origin" class="col-md-3 control-label">Origin</label>
+
+                          <div class="col-md-8">
+                            <input id="origin" type="text" class="form-control" name="origin" value="{{ old('origin') }}" required autofocus>
+
+                            @if ($errors->has('origin'))
+                              <span class="help-block">
+                                <strong>{{ $errors->first('origin') }}</strong>
+                              </span>
+                            @endif
                         </div>
-                        <div class="form-group{{ $errors->has('common_name') ? ' has-error' : '' }}">
-                            <label for="common_name" class="col-md-3 control-label">Common Name</label>
-
-                            <div class="col-md-8">
-                                <input id="common_name" type="text" class="form-control" name="common_name" value="{{ old('common_name') }}" required autofocus>
-
-                                @if ($errors->has('common_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('common_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('origin') ? ' has-error' : '' }}">
-                            <label for="origin" class="col-md-3 control-label">Origin</label>
-
-                            <div class="col-md-8">
-                                <input id="origin" type="text" class="form-control" name="origin" value="{{ old('origin') }}" required autofocus>
-
-                                @if ($errors->has('origin'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('origin') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-3 control-label">Description</label>
-
-                            <div class="col-md-8">
-                                <textarea id="description" rows=="7" cols="5" oneKeyPress class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
-
-                                @if ($errors->has('description'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('invaded_habitat') ? ' has-error' : '' }}">
-                            <label for="invaded_habitat" class="col-md-3 control-label">Invaded Habitat</label>
-
-                            <div class="col-md-8">
-                                <textarea id="invaded_habitat" rows=="7" cols="5" oneKeyPress class="form-control" name="invaded_habitat" value="{{ old('invaded_habitat') }}" required autofocus> </textarea>
-
-                                @if ($errors->has('invaded_habitat'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('invaded_habitat') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
+                    </div>
                         <div class="form-group{{ URL::to('upload') }}" method="post" enctype="multipart/form-data">
                              <label for="picture" class="col-md-3 control-label">Select image to upload :</label>
                                   <div class="col-md-8">
@@ -150,139 +124,119 @@
                                      <input type="hidden" value="{{ csrf_token() }}" name="_token">
                                   </div>
                           </div>
-                        </div>
-                      <div class="col-md-6">
-                          <div class="form-group{{ $errors->has('distribution') ? ' has-error' : '' }}">
-                            <label for="distribution" class="col-md-3 control-label">Distribution</label>
+                    </div>
+                    <div> ----- </div>
 
-                              <div class="col-md-8">
-                                <textarea id="distribution" rows="7" cols="3" oneKeyPressclass class="form-control" name="distribution" value="{{ old('distribution') }}" required autofocus></textarea>
+                    <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                        <label for="description" class="col-md-3 control-label text-left">Description</label>
 
-                                  @if ($errors->has('distribution'))
-                                    <span class="help-block">
-                                      <strong>{{ $errors->first('distribution') }}</strong>
-                                    </span>
-                                  @endif
-                              </div>
-                            </div>
-                        <div class="form-group{{ $errors->has('ecology') ? ' has-error' : '' }}">
-                            <label for="ecology" class="col-md-3 control-label">Ecology</label>
+                        <div class="col-md-8 text-left">
+                            <textarea id="description" rows="7" cols="3" oneKeyPress class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
 
-                            <div class="col-md-8">
-                                <textarea id="ecology" rows=="7" cols="5" oneKeyPress class="form-control" name="ecology" value="{{ old('ecology') }}" required autofocus></textarea>
-
-                                @if ($errors->has('ecology'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('ecology') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('chemical_ctrl') ? ' has-error' : '' }}">
-                            <label for="chemical_ctrl" class="col-md-3 control-label">Chemical Control</label>
-
-                            <div class="col-md-8">
-                                <textarea id="chemical_ctrl" rows=="7" cols="5" oneKeyPress class="form-control" name="chemical_ctrl" value="{{ old('chemical_ctrl') }}" required autofocus></textarea>
-
-                                @if ($errors->has('chemical_ctrl'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('chemical_ctrl') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('manual_ctrl') ? ' has-error' : '' }}">
-                            <label for="manual_ctrl" class="col-md-3 control-label">Mechanical/Manual Control</label>
-
-                            <div class="col-md-8">
-                                <input id="manual_ctrl" type="text" class="form-control" name="manual_ctrl" value="{{ old('manual_ctrl') }}" required autofocus>
-
-                                @if ($errors->has('manual_ctrl'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('manual_ctrl') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('biological_ctrl') ? ' has-error' : '' }}">
-                            <label for="biological_ctrl" class="col-md-3 control-label">Biological Control :</label>
-
-                            <div class="col-md-8">
-                                <input id="biological_ctrl" type="text" class="form-control" name="biological_ctrl" value="{{ old('biological_ctrl') }}" required autofocus>
-
-                                @if ($errors->has('biological_ctrl'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('biological_ctrl') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('prevention') ? ' has-error' : '' }}">
-                            <label for="preventioin" class="col-md-3 control-label">Prevention :</label>
-
-                            <div class="col-md-8">
-                                <input id="prevention" type="text" class="form-control" name="prevention" value="{{ old('prevention') }}" required autofocus>
-
-                                @if ($errors->has('prevention'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('prevention') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('uses') ? ' has-error' : '' }}">
-                            <label for="uses" class="col-md-3 control-label">Uses :</label>
-
-                            <div class="col-md-8">
-                                <input id="uses" type="text" class="form-control" name="uses" value="{{ old('uses') }}" required autofocus>
-
-                                @if ($errors->has('uses'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('uses') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('risk_analisis') ? ' has-error' : '' }}">
-                            <label for="risk_analisis" class="col-md-3 control-label">Risk Analysis :</label>
-
-                            <div class="col-md-8">
-                                <input id="risk_analisis" type="text" class="form-control" name="risk_analisis" value="{{ old('risk_analisis') }}" required autofocus>
-
-                                @if ($errors->has('risk_analisis'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('risk_analisis') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
-                            <label for="contact" class="col-md-3 control-label">Contact Person :</label>
-
-                            <div class="col-md-8">
-                                <input id="contact" type="number" class="form-control" name="contact" value="{{ old('contact') }}" required autofocus>
-
-                                @if ($errors->has('contact'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('contact') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('reference') ? ' has-error' : '' }}">
-                            <label for="reference" class="col-md-3 control-label">Reference :</label>
-
-                            <div class="col-md-8">
-                                <input id="reference" type="text" class="form-control" name="reference" value="{{ old('reference') }}" required autofocus>
-
-                                @if ($errors->has('reference'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('reference') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
+                    <div class="form-group{{ $errors->has('invaded_habitat') ? ' has-error' : '' }}">
+                        <label for="invaded_habitat" class="col-md-3 control-label">Invaded Habitat</label>
+
+                        <div class="col-md-8">
+                            <textarea id="invaded_habitat" rows="7" cols="5" oneKeyPress class="form-control" name="invaded_habitat" value="{{ old('invaded_habitat') }}" required autofocus> </textarea>
+
+                            @if ($errors->has('invaded_habitat'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('invaded_habitat') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('distribution') ? ' has-error' : '' }}">
+                      <label for="distribution" class="col-md-3 control-label">Distribution</label>
+
+                        <div class="col-md-8">
+                          <textarea id="distribution" rows="7" cols="3" oneKeyPressclass class="form-control" name="distribution" value="{{ old('distribution') }}" required autofocus></textarea>
+
+                            @if ($errors->has('distribution'))
+                              <span class="help-block">
+                                <strong>{{ $errors->first('distribution') }}</strong>
+                              </span>
+                            @endif
+                        </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('ecology') ? ' has-error' : '' }}">
+                        <label for="ecology" class="col-md-3 control-label">Ecology</label>
+
+                        <div class="col-md-8">
+                            <textarea id="ecology" rows="7" cols="5" oneKeyPress class="form-control" name="ecology" value="{{ old('ecology') }}" ></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('chemical_ctrl') ? ' has-error' : '' }}">
+                          <label for="chemical_ctrl" class="col-md-3 control-label">Chemical Control</label>
+
+                          <div class="col-md-8">
+                              <textarea id="chemical_ctrl" rows="7" cols="5" oneKeyPress class="form-control" name="chemical_ctrl" value="{{ old('chemical_ctrl') }}" ></textarea>
+                          </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('manual_ctrl') ? ' has-error' : '' }}">
+                          <label for="manual_ctrl" class="col-md-3 control-label">Mechanical/Manual Control</label>
+
+                          <div class="col-md-8">
+                              <textarea id="manual_ctrl" rows="7" cols="5" oneKeyPress class="form-control" name="manual_ctrl" value="{{ old('manual_ctrl') }}" ></textarea>
+                          </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('biological_ctrl') ? ' has-error' : '' }}">
+                          <label for="biological_ctrl" class="col-md-3 control-label">Biological Control :</label>
+
+                          <div class="col-md-8">
+                              <textarea id="biological_ctrl" rows="7" cols="5" oneKeyPress class="form-control" name="biological_ctrl" value="{{ old('biological_ctrl') }}"></textarea>
+                          </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('prevention') ? ' has-error' : '' }}">
+                          <label for="preventioin" class="col-md-3 control-label">Prevention :</label>
+
+                          <div class="col-md-8">
+                              <textarea id="prevention" rows="7" cols="5" oneKeyPress class="form-control" name="prevention" value="{{ old('prevention') }}" ></textarea>
+                          </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('utilization') ? ' has-error' : '' }}">
+                          <label for="utilization" class="col-md-3 control-label">Uses :</label>
+
+                          <div class="col-md-8">
+                              <textarea id="utilization"rows="7" cols="5" oneKeyPress class="form-control" name="utilization" value="{{ old('utilization') }}" ></textarea>
+                          </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('risk_analisis') ? ' has-error' : '' }}">
+                          <label for="risk_analisis" class="col-md-3 control-label">Risk Analysis :</label>
+
+                          <div class="col-md-8">
+                              <textarea id="risk_analisis" rows="7" cols="5" oneKeyPress class="form-control" name="risk_analisis" value="{{ old('risk_analisis') }}"></textarea>
+                          </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
+                          <label for="contact" class="col-md-3 control-label">Contact Person :</label>
+
+                          <div class="col-md-8">
+                              <textarea id="contact" rows="7" cols="5" oneKeyPress class="form-control" name="contact" value="{{ old('contact') }}"></textarea>
+                          </div>
+                      </div>
+                      <div class="form-group{{ $errors->has('reference') ? ' has-error' : '' }}">
+                          <label for="reference" class="col-md-3 control-label">Reference :</label>
+
+                          <div class="col-md-8">
+                              <textarea id="reference" rows="7" cols="5" oneKeyPress class="form-control" name="reference" value="{{ old('reference') }}" required autofocus></textarea>
+
+                              @if ($errors->has('reference'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('reference') }}</strong>
+                                  </span>
+                              @endif
+                          </div>
+                      </div>
+
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary">
