@@ -18,44 +18,60 @@
   <div class="box-body">
       <div class="row">
         <div class="col-sm-6"></div>
-        <div class="col-sm-6"></div>
-      </div>
-      <form method="POST" action="{{ route('invasive.search') }}">
-         {{ csrf_field() }}
-           <div class="input-group">
-             <input type="text" name="q" class="form-control" placeholder="Search...">
-                 <span class="input-group-btn">
-                   <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                   </button>
-                 </span>
+        <div class="col-sm-6">
+          <form method="POST" action="{{ route('invasive.search') }}">
+           {{ csrf_field() }}
+           <div class="col-md-4 pull-right">
+             <div class="input-group">
+               <input type="text" name="search" class="form-control" placeholder="Search...">
+                   <span class="input-group-btn">
+                     <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                     </button>
+                   </span>
+
+             </div>
            </div>
-         </form>
-      </form>
+           </form>
+         </div>
+      </div>
+
+
     <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
       <div class="row">
         <div class="col-sm-12">
           <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead>
               <tr role="row">
-                <th width="10%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" aria-sort="ascending">Id Species</th>
-                <th width="20%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Species Name</th>
-                <th width="20%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Synonim</th>
-                <th width="20%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending">Description</th>
-                <th tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
+                <th width="5%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">No</th>
+                <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Family: activate to sort column ascending">Family</th>
+                <th width="10%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Genus: activate to sort column ascending">Genus</th>
+                <th width="10%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Species: activate to sort column ascending">Species Name</th>
+                <th width="10%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Synonim: activate to sort column ascending">Synonim</th>
+                <th width="10%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Common_name: activate to sort column ascending">Common Name</th>
+                <th width="10%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Origin: activate to sort column ascending">Origin</th>
+                <th width="20%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending">Description</th>
+                <th width= "15" tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Action: activate to sort column ascending">Action</th>
               </tr>
             </thead>
             <tbody>
-            @foreach ($users as $user)
+            @foreach ($speciment_ias as $speciment_ias)
                 <tr role="row" class="odd">
-                  <td class="sorting_1">{{ $user->username }}</td>
-                  <td>{{ $user->email }}</td>
-                  <td class="hidden-xs">{{ $user->firstname }}</td>
-                  <td class="hidden-xs">{{ $user->lastname }}</td>
+                  <td class="sorting_1">{{ $speciment_ias->id_ias }}</td>
+                  <td>{{ $speciment_ias->family }}</td>
+                  <td class="hidden-xs">{{ $speciment_ias->genus }}</td>
+                  <td class="hidden-xs">{{ $speciment_ias->species }}</td>
+                  <td class="hidden-xs">{{ $speciment_ias->synonim }}</td>
+                  <td class="hidden-xs">{{ $speciment_ias->common_name }}</td>
+                  <td class="hidden-xs">{{ $speciment_ias->origin }}</td>
+                  <td class="hidden-xs">{{ $speciment_ias->description }}</td>
                   <td>
-                    <form class="row" method="POST" action="{{ route('invasive.destroy', ['id' => $user->id]) }}" onsubmit = "return confirm('Are you sure?')">
+                    <form class="row" method="POST" action="{{ route('invasive.destroy', ['id' => $speciment_ias->id]) }}" onsubmit = "return confirm('Are you sure?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('user-management.edit', ['id' => $user->id]) }}" class="btn btn-warning">
+                        <a href="{{ route('invasive.edit', ['id' => $speciment_ias->id]) }}" class="btn btn-success">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ route('invasive.edit', ['id' => $speciment_ias->id]) }}" class="btn btn-warning">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                         @if ($user->username != Auth::user()->username)
@@ -82,11 +98,11 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($users)}} of {{count($users)}} entries</div>
+          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to {{count($speciment_ias)}} of {{count($speciment_ias)}} entries</div>
         </div>
         <div class="col-sm-7">
           <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-            {{ $users->links() }}
+            {{ $speciment_ias->links() }}
           </div>
         </div>
       </div>

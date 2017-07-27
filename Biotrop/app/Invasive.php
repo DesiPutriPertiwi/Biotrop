@@ -11,5 +11,6 @@ class Invasive extends Model
     *
     * @var array
     */
+    protected $table = 'speciment_ias';
     protected $guarded = [];
 }

@@ -86,6 +86,8 @@
     <script src="{{ asset ("/bower_components/AdminLTE/dist/js/demo.js") }}" type="text/javascript"></script>
 
     <script src="{{ asset("/bower_components/AdminLTE/dist/css/summernote/summernote.min.js")}}" type="text/javascript" />
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}} " type="text/javascript" ></script>
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the

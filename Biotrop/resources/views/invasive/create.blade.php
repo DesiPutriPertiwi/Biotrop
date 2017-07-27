@@ -1,6 +1,8 @@
 @extends('invasive.base')
 
 @section('action-content')
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.6/summernote.js"></script>
 <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -14,7 +16,9 @@
               <div class="form-group{{ $errors->has('family') ? ' has-error' : '' }}">
                   <label for="family" class="col-md-3 control-label">Family</label>
                       <div class="col-md-8">
+
                           <input id="family" type="text" placeholder="Enter Family name" class="form-control" name="family" value="{{ old('famly') }}" required>
+
                             @if ($errors->has('family'))
                               <span class="help-block">
                                 <strong>{{ $errors->first('family') }}</strong>
@@ -26,7 +30,9 @@
               <div class="form-group{{ $errors->has('genus') ? ' has-error' : '' }}">
                 <label for="genus" class="col-md-3 control-label">Genus</label>
                     <div class="col-md-8">
-                      <input id="genus" type="text" placeholder="Enter Genus name" class="form-control" name="genus" value="{{ old('genus') }}" required>
+
+                        <input id="genus" type="text" placeholder="Enter Genus name" class="form-control" name="genus" value="{{ old('genus') }}" required autofocus>
+
                             @if ($errors->has('genus'))
                               <span class="help-block">
                                   <strong>{{ $errors->first('genus') }}</strong>
@@ -38,8 +44,10 @@
               <div class="form-group{{ $errors->has('species') ? ' has-error' : '' }}">
                 <label for="species" class="col-md-3 control-label">Species</label>
                     <div class="col-md-8">
-                        <input id="species" type="text" placeholder="Enter Species name" class="form-control" name="species" required>
-                            @if ($errors->has('species'))
+                      <i>
+                        <input id="species" type="text" placeholder="Enter Species name" class="form-control" name="species" required autofocus>
+                      </i>
+                          @if ($errors->has('species'))
                               <span class="help-block">
                                   <strong>{{ $errors->first('species') }}</strong>
                               </span>
@@ -50,7 +58,9 @@
               <div class="form-group{{ $errors->has('synonim') ? ' has-error' : '' }}">
                 <label for="synonim" class="col-md-3 control-label">Synonim</label>
                     <div class="col-md-8">
+                      <i>
                       <input id="synonim" type="text" class="form-control"  placeholder="Enter Synonim"name="synonim" value="{{ old('synonim') }}" required autofocus>
+                    </i>
                             @if ($errors->has('synonim'))
                               <span class="help-block">
                                 <strong>{{ $errors->first('synonim') }}</strong>
@@ -120,15 +130,15 @@
       </div>
 
 
-          <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+          <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
             <label for="description" class="col-md-3 control-label">Description</label>
               <div class="col-md-8">
-                  <textarea id="summernote"  oneKeyPress placeholder="Enter description" class="form-control" name="summernote" value="{{ old('summernote') }}" required autofocus></textarea>
-                      @if ($errors->has('description'))
-                          <span class="help-block">
-                            <strong>{{ $errors->first('description') }}</strong>
-                          </span>
-                      @endif
+                  <textarea id="description"  rows="7" cols="5" oneKeyPress placeholder="Enter description" class="form-control" name="description" value="{{ old('description') }}" required autofocus ></textarea>
+                  @if ($errors->has('description'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('description') }}</strong>
+                    </span>
+                  @endif
               </div>
           </div>
 
@@ -206,7 +216,7 @@
                           <label for="reference" class="col-md-3 control-label">Reference :</label>
 
                           <div class="col-md-8">
-                              <textarea id="reference" rows="7" cols="5" oneKeyPress placeholder="Enter reference" class="form-control" name="reference" value="{{ old('reference') }}" required autofocus></textarea>
+                              <textarea id="reference" rows="7" cols="5" placeholder="Enter reference" class="form-control" name="reference"  required autofocus></textarea>
 
                               @if ($errors->has('reference'))
                                   <span class="help-block">
@@ -218,7 +228,7 @@
 
                         <div class="form-group">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary ">
                                     Create
                                 </button>
                             </div>
@@ -229,11 +239,17 @@
         </div>
     </div>
 </div>
+<!-- <script type="textjavascript">
+    $('.wysiwyg').ckeditor();
+</script>
 <script type="text/javascript">
         $(document).ready(function() {
         $('#summernote').summernote(
-            height: '200px',
-        );
-          });
-      </script>
+          height: '300px',                 // set editor height
+          minHeight: null,             // set minimum height of editor
+          maxHeight: null,             // set maximum height of editordes
+          focus: true                  // set focus to editable area after initializing summernote
+        )
+      });
+</script> -->
 @endsection

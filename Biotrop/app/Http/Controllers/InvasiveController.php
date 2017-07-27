@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\User;
+use App\Invasive;
 
 class InvasiveController extends Controller
 {
@@ -13,7 +13,7 @@ class InvasiveController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/invasive-management';
+    protected $redirectTo = '/invasive';
 
          /**
      * Create a new controller instance.
@@ -32,9 +32,9 @@ class InvasiveController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
+        $speciment_ias = Invasive::paginate(5);
 
-        return view('invasive/index', ['users' => $users]);
+        return view('invasive/index', ['speciment_ias' => $speciment_ias]);
     }
 
     /**
@@ -56,16 +56,31 @@ class InvasiveController extends Controller
     public function store(Request $request)
     {
         $this->validateInput($request);
-         User::create([
-            'username' => $request['username'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'firstname' => $request['firstname'],
-            'lastname' => $request['lastname']
+         Invasive::create([
+                  // -> join ('species', 'species_id', '=', 'id_species')
+                  // -> join('genus', 'genus_id', '=', 'id_genus')
+                  // -> join('family', 'family_id', '=', 'id_family')
+                  // -> select('speciment_ias.*', 'species_id')
+                  // -> get("name_family"); => $request['family'],
+            'name_family' => $request ['family'],
+            'name_genus' => $request ['genus'],
+            'name_species' => $request ['species'],
+            'species_synonim' => $request ['synonim'],
+            'common_name' => $request ['common_name'],
+            'origin_species' => $request ['origin'],
+            'habitat' => $request ['indvaded_habitat'],
+            'description_species' => $request ['description'],
+            'distribution_specimen' => $request ['distribution'],
+            'ecology' => $request ['ecology'],
+            'chemical_ctrl'=> $request ['chemical_ctrl'],
+            'manual_ctrl' => $request ['manual_ctrl'],
+            'biologycal_ctrl' => $request ['biological_ctrl'],
+            'prevention' => $request ['prevention'],
+            'utilzation' => $request ['utilization'],
+            'risk_analisis' => $request ['risk_analisis'],
+            'contact_person' => $request ['contact']
         ]);
-        
-
-        return redirect()->intended('/user-management');
+        return redirect()->intended('/invasive');
     }
 
     /**
