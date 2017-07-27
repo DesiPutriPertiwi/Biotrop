@@ -63,6 +63,7 @@ class InvasiveController extends Controller
             'firstname' => $request['firstname'],
             'lastname' => $request['lastname']
         ]);
+        
 
         return redirect()->intended('/user-management');
     }

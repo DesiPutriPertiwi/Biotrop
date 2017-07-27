@@ -4,139 +4,134 @@
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">Add new collection</div>
-          <div class="panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('invasive.store') }}">
-              {{ csrf_field() }}
+        <div class="panel panel-default">
+          <div class="panel-heading">Add new collection</div>
+            <div class="panel-body">
+              <form class="form-horizontal" role="form" method="POST" action="{{ route('invasive.store') }}">
+                {{ csrf_field() }}
 
-              <div class="col-md-6">
+            <div class="col-md-6">
               <div class="form-group{{ $errors->has('family') ? ' has-error' : '' }}">
                   <label for="family" class="col-md-3 control-label">Family</label>
-
                       <div class="col-md-8">
                           <input id="family" type="text" placeholder="Enter Family name" class="form-control" name="family" value="{{ old('famly') }}" required>
-
                             @if ($errors->has('family'))
                               <span class="help-block">
                                 <strong>{{ $errors->first('family') }}</strong>
                               </span>
                             @endif
                       </div>
-                </div>
+              </div>
 
-                <div class="form-group{{ $errors->has('genus') ? ' has-error' : '' }}">
-                    <label for="genus" class="col-md-3 control-label">Genus</label>
-
-                      <div class="col-md-8">
-                        <input id="genus" type="text" placeholder="Enter Genus name" class="form-control" name="genus" value="{{ old('genus') }}" required>
-
+              <div class="form-group{{ $errors->has('genus') ? ' has-error' : '' }}">
+                <label for="genus" class="col-md-3 control-label">Genus</label>
+                    <div class="col-md-8">
+                      <input id="genus" type="text" placeholder="Enter Genus name" class="form-control" name="genus" value="{{ old('genus') }}" required>
                             @if ($errors->has('genus'))
                               <span class="help-block">
                                   <strong>{{ $errors->first('genus') }}</strong>
                               </span>
                             @endif
-                       </div>
-                  </div>
+                   </div>
+              </div>
 
-                  <div class="form-group{{ $errors->has('species') ? ' has-error' : '' }}">
-                    <label for="species" class="col-md-3 control-label">Species</label>
-                        <div class="col-md-8">
-                            <input id="species" type="text" placeholder="Enter Species name" class="form-control" name="species" required>
-
+              <div class="form-group{{ $errors->has('species') ? ' has-error' : '' }}">
+                <label for="species" class="col-md-3 control-label">Species</label>
+                    <div class="col-md-8">
+                        <input id="species" type="text" placeholder="Enter Species name" class="form-control" name="species" required>
                             @if ($errors->has('species'))
                               <span class="help-block">
                                   <strong>{{ $errors->first('species') }}</strong>
                               </span>
                             @endif
-                        </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('synonim') ? ' has-error' : '' }}">
-                    <label for="synonim" class="col-md-3 control-label">Synonim</label>
+                    </div>
+              </div>
 
-                        <div class="col-md-8">
-                          <input id="synonim" type="text" class="form-control"  placeholder="Enter Synonim"name="synonim" value="{{ old('synonim') }}" required autofocus>
-
+              <div class="form-group{{ $errors->has('synonim') ? ' has-error' : '' }}">
+                <label for="synonim" class="col-md-3 control-label">Synonim</label>
+                    <div class="col-md-8">
+                      <input id="synonim" type="text" class="form-control"  placeholder="Enter Synonim"name="synonim" value="{{ old('synonim') }}" required autofocus>
                             @if ($errors->has('synonim'))
                               <span class="help-block">
                                 <strong>{{ $errors->first('synonim') }}</strong>
                               </span>
                             @endif
-                        </div>
                     </div>
+            </div>
+        </div>
+
+        <!-- kolom kanan -->
+        <div class="col-md-6">
+            <div class="form-group{{ $errors->has('common_name') ? ' has-error' : '' }}">
+                <label for="common_name" class="col-md-3 control-label">Common Name</label>
+                  <div class="col-md-8">
+                    <input id="common_name" type="text" placeholder="Enter common name" class="form-control" name="common_name" value="{{ old('common_name') }}" required autofocus>
+                        @if ($errors->has('common_name'))
+                          <span class="help-block">
+                            <strong>{{ $errors->first('common_name') }}</strong>
+                          </span>
+                        @endif
+                  </div>
+              </div>
+
+            <div class="form-group{{ $errors->has('origin') ? ' has-error' : '' }}">
+              <label for="origin" class="col-md-3 control-label">Origin</label>
+                  <div class="col-md-8">
+                      <input id="origin" type="text" placeholder="Enter origin" class="form-control" name="origin" value="{{ old('origin') }}" required autofocus>
+                          @if ($errors->has('origin'))
+                            <span class="help-block">
+                              <strong>{{ $errors->first('origin') }}</strong>
+                            </span>
+                          @endif
+                  </div>
+            </div>
+            <div class="form-group{{ $errors->has('invaded_habitat') ? ' has-error' : '' }}">
+                <label for="invaded_habitat" class="col-md-3 control-label">Invaded Habitat</label>
+
+                <div class="col-md-8">
+                    <input id="invaded_habitat" placeholder="Enter invaded habitat" class="form-control" name="invaded_habitat" value="{{ old('invaded_habitat') }}" required autofocus>
+
+                    @if ($errors->has('invaded_habitat'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('invaded_habitat') }}</strong>
+                        </span>
+                    @endif
                 </div>
-                  <div class="col-md-6">
+            </div>
 
-                      <div class="form-group{{ $errors->has('common_name') ? ' has-error' : '' }}">
-                          <label for="common_name" class="col-md-3 control-label">Common Name</label>
-
-                          <div class="col-md-8">
-                            <input id="common_name" type="text" placeholder="Enter common name" class="form-control" name="common_name" value="{{ old('common_name') }}" required autofocus>
-                              @if ($errors->has('common_name'))
-                                <span class="help-block">
-                                  <strong>{{ $errors->first('common_name') }}</strong>
-                                </span>
-                              @endif
-                          </div>
-                      </div>
-
-                      <div class="form-group{{ $errors->has('origin') ? ' has-error' : '' }}">
-                        <label for="origin" class="col-md-3 control-label">Origin</label>
-
-                          <div class="col-md-8">
-                            <input id="origin" type="text" placeholder="Enter origin" class="form-control" name="origin" value="{{ old('origin') }}" required autofocus>
-
-                            @if ($errors->has('origin'))
-                              <span class="help-block">
-                                <strong>{{ $errors->first('origin') }}</strong>
-                              </span>
-                            @endif
-                        </div>
-                    </div>
-                        <div class="form-group{{ URL::to('upload') }}" method="post" enctype="multipart/form-data">
-                             <label for="picture" class="col-md-3 control-label">Select image to upload :</label>
-                                  <div class="col-md-8">
-                                     <input type="file" name="file" id="file">
-                                         <input type="hidden" value="{{ csrf_token() }}" name="_token">
-                                  </div>
-                                  <div></div>
-                                  <div class="col-md-8">
-                                    <input type="file" name="file" id="file">
-                                    <input type="hidden" value="{{ csrf_token() }}" name="_token">
-                                  </div>
-                                  <div></div>
-                                  <div class="col-md-8">
-                                     <input type="file" name="file" id="file">
-                                     <input type="hidden" value="{{ csrf_token() }}" name="_token">
-                                  </div>
-                          </div>
-                    </div>
-
-                  <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                    <label for="description" class="col-md-3 control-label">Description</label>
+            <div class="form-group{{ URL::to('upload') }}" method="post" enctype="multipart/form-data">
+                 <label for="picture" class="col-md-3 control-label">Select image to upload :</label>
+                    <!-- Pilih Gambar 1 -->
                       <div class="col-md-8">
-                            <textarea id="description" rows="7" cols="3" oneKeyPress placeholder="Enter description" class="form-control" name="description" value="{{ old('description') }}" required autofocus></textarea>
+                         <input type="file" name="file" id="file">
+                             <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                      </div>
+                        <!-- Pilih Gambar 2 -->
+                      <div class="col-md-8">
+                          <input type="file" name="file" id="file">
+                          <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                      </div>
+                        <!-- Pilih Gambar 3 -->
+                      <div class="col-md-8">
+                         <input type="file" name="file" id="file">
+                         <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                     </div>
+            </div>
+      </div>
 
-                            @if ($errors->has('description'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('description') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="form-group{{ $errors->has('invaded_habitat') ? ' has-error' : '' }}">
-                        <label for="invaded_habitat" class="col-md-3 control-label">Invaded Habitat</label>
 
-                        <div class="col-md-8">
-                            <textarea id="invaded_habitat" rows="7" cols="5" oneKeyPress placeholder="Enter invaded habitat" class="form-control" name="invaded_habitat" value="{{ old('invaded_habitat') }}" required autofocus> </textarea>
+          <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+            <label for="description" class="col-md-3 control-label">Description</label>
+              <div class="col-md-8">
+                  <textarea id="summernote"  oneKeyPress placeholder="Enter description" class="form-control" name="summernote" value="{{ old('summernote') }}" required autofocus></textarea>
+                      @if ($errors->has('description'))
+                          <span class="help-block">
+                            <strong>{{ $errors->first('description') }}</strong>
+                          </span>
+                      @endif
+              </div>
+          </div>
 
-                            @if ($errors->has('invaded_habitat'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('invaded_habitat') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    </div>
 
                     <div class="form-group{{ $errors->has('distribution') ? ' has-error' : '' }}">
                       <label for="distribution" class="col-md-3 control-label">Distribution</label>
@@ -151,14 +146,14 @@
                             @endif
                         </div>
                       </div>
-                      <div class="form-group{{ $errors->has('ecology') ? ' has-error' : '' }}">
+                      <div class="form-group">
                         <label for="ecology" class="col-md-3 control-label">Ecology</label>
 
                         <div class="col-md-8">
                             <textarea id="ecology" rows="7" cols="5" oneKeyPress placeholder="Enter ecology" class="form-control" name="ecology" value="{{ old('ecology') }}" ></textarea>
                         </div>
                       </div>
-                      <div class="form-group{{ $errors->has('chemical_ctrl') ? ' has-error' : '' }}">
+                      <div class="form-group">
                           <label for="chemical_ctrl" class="col-md-3 control-label">Chemical Control</label>
 
                           <div class="col-md-8">
@@ -229,9 +224,16 @@
                             </div>
                       </div>
                     </form>
-
-              <div>
+                </div>
+              </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+        $(document).ready(function() {
+        $('#summernote').summernote(
+            height: '200px',
+        );
+          });
+      </script>
 @endsection
