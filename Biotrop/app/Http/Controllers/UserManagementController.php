@@ -61,9 +61,9 @@ class UserManagementController extends Controller
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
             'firstname' => $request['firstname'],
-            'lastname' => $request['lastname']
+            'lastname' => $request['lastname'],
+            'user_type' => $request['user_type']
         ]);
-
         return redirect()->intended('/user-management');
     }
 
@@ -108,12 +108,14 @@ class UserManagementController extends Controller
         $constraints = [
             'username' => 'required|max:20',
             'firstname'=> 'required|max:60',
-            'lastname' => 'required|max:60'
+            'lastname' => 'required|max:60',
+            'user_type' => 'required|max:20'
             ];
         $input = [
             'username' => $request['username'],
             'firstname' => $request['firstname'],
-            'lastname' => $request['lastname']
+            'lastname' => $request['lastname'],
+            'user_type' => $request['user_type']
         ];
         if ($request['password'] != null && strlen($request['password']) > 0) {
             $constraints['password'] = 'required|min:6|confirmed';

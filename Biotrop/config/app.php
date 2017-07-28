@@ -178,7 +178,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+<<<<<<< HEAD
         // Unisharp\Ckeditor\ServiceProvider::class,
+=======
+      //  Unisharp\Ckeditor\ServiceProvider::class,
+>>>>>>> c2351ddbda4286a24da45f31c39c09d277f69c24
     ],
 
     /*
