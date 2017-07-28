@@ -9,7 +9,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-11">
-                                <div class="panel-heading"> Edit Profile </div>
+                                <div class="box-title"> 
+                                    <h4>Edit Profile</h4> 
+                                </div>
                                     <div class="box">
                                         <form class="form-horizontal" role="form" method="POST" action="[{Auth::user{}->username}]">
                                             <input type="hidden" name="_method" value="PATCH">
@@ -86,8 +88,7 @@
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
-                                </div>
+                                     </div>
                             </div>
                         </div>
                     </div>

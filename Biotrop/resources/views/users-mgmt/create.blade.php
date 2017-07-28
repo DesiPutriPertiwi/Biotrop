@@ -1,101 +1,130 @@
 @extends('users-mgmt.base')
 
 @section('action-content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Add new user</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('user-management.store') }}">
-                        {{ csrf_field() }}
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <div class="box-title">
+                                    <h4>Add New User</h4>
+                                </div>
+                                <div class="box">
+                                    <form class="form-horizontal" role="form" style="margin-top:10px"  method="POST" action="{{ route('user-management.store') }}">
+                                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">User Name</label>
+                                        <div class="form-group{{ $errors->has('user_type') ? ' has-error' : '' }}">
+                                            <label for="user_type" class="col-md-2 col-md-offset-1" style="text-align= left">User Type</label>
 
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                                            <div class="col-md-6">
+                                                <select id="user_type" type="user_type" class="form-control" name="user_type" required>
+                                                    <option>-- Select --</option>
+                                                    <option>Operator</option>
+                                                    <option>Verifikator</option>
+                                                </select>
+                                                @if ($errors->has('user_type'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('user_type') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
 
-                                @if ($errors->has('username'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
+                                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                            <label for="username" class="col-md-2 col-md-offset-1" style="text-align= left">User Name</label>
+
+                                            <div class="col-md-6">
+                                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+
+                                                @if ($errors->has('username'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('username') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                            <label for="email" class="col-md-2 col-md-offset-1" style="text-align= left">E-Mail Address</label>
+
+                                            <div class="col-md-6">
+                                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                                @if ($errors->has('email'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
+                                            <label for="firstname" class="col-md-2 col-md-offset-1" style="text-align= left">First Name</label>
+
+                                            <div class="col-md-6">
+                                                <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required>
+
+                                                @if ($errors->has('firstname'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('firstname') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+                                            <label for="lastname" class="col-md-2 col-md-offset-1" style="text-align= left">Last Name</label>
+
+                                            <div class="col-md-6">
+                                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required>
+
+                                                @if ($errors->has('lastname'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('lastname') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                            <label for="password" class="col-md-2 col-md-offset-1" style="text-align= left">Password</label>
+
+                                            <div class="col-md-6">
+                                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                                @if ($errors->has('password'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('password') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="password-confirm" class="col-md-2 col-md-offset-1" style="text-align= left">Confirm Password</label>
+
+                                            <div class="col-md-6">
+                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-md-offset-4 text-right">
+                                                <button type="submit" class="btn btn-primary">Create</button>
+                                                <button type="submit" class="btn btn-secondary" onclick="window.location='{{url("user-management")}}'" style="margin-left:5px">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <label for="firstname" class="col-md-4 control-label">First Name</label>
-
-                            <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required>
-
-                                @if ($errors->has('firstname'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('firstname') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                            <label for="lastname" class="col-md-4 control-label">Last Name</label>
-
-                            <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required>
-
-                                @if ($errors->has('lastname'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('lastname') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4 text-right">
-                                <button type="submit" class="btn btn-primary">
-                                    Create
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 @endsection
