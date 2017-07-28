@@ -3,10 +3,12 @@
 @section('action-content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+        <div class="col-md-8">
+            <div class="container">
+                <div class="row">
+                
                 <div class="panel-heading">Update user</div>
-                <div class="panel-body">
+                <div class="box">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('user-management.update', ['id' => $user->id]) }}">
                         <input type="hidden" name="_method" value="PATCH">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
