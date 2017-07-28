@@ -22,8 +22,8 @@
                                             <div class="col-md-6">
                                                 <select id="user_type" type="user_type" class="form-control" name="user_type" required>
                                                     <option>-- Select --</option>
-                                                    <option>Operator</option>
-                                                    <option>Verifikator</option>
+                                                    <option value="1">Operator</option>
+                                                    <option value="2">Verifikator</option>>
                                                 </select>
                                                 @if ($errors->has('user_type'))
                                                     <span class="help-block">
@@ -114,7 +114,7 @@
                                         <div class="form-group">
                                             <div class="col-md-6 col-md-offset-4 text-right">
                                                 <button type="submit" class="btn btn-primary">Create</button>
-                                                <button type="submit" class="btn btn-secondary" onclick="window.location='{{url("user-management")}}'" style="margin-left:5px">Cancel</button>
+                                                <button type="button" class="btn btn-secondary" onclick="window.location='{{ url("user-management") }}'" style="margin-left:10px">Cancel</button>
                                             </div>
                                         </div>
                                     </form>

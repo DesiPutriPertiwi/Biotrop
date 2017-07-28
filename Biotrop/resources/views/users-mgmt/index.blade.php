@@ -48,11 +48,27 @@
             <tbody>
             @foreach ($users as $user)
                 <tr role="row" class="odd">
-                  <td class="sorting_1">{{ $user->username }}</td>
-                  <td class="hidden-xs">{{ $user->email }}</td>
-                  <td class="sorting_1">{{ $user->firstname }}</td>
-                  <td class="hidden-xs">{{ $user->lastname }}</td>
-                  <td >{{ $user->user_type}}</td>
+                  <td class="sorting_1">
+                      <h5>{{ $user->username }}</h5>
+                  </td>
+                  <td class="hidden-xs">
+                      <h5>{{ $user->email }} </h5>
+                  </td>
+                  <td class="sorting_1">
+                      <h5>{{ $user->firstname }}</h5>
+                  </td>
+                  <td class="hidden-xs">
+                      <h5>{{ $user->lastname }}</h5>
+                  </td>
+                  <td >
+                      @if($user->user_type == '0')
+                        <h5> Admin</h5>
+                      @elseif($user->user_type == '1')
+                        <h5> Operator</h5>
+                      @elseif($user->user_type == '2')
+                        <h5> Verifikator </h5>
+                      @endif
+                  </td>
                   <td>
                     <form class="row" method="POST" action="{{ route('user-management.destroy', ['id' => $user->id]) }}" onsubmit = "return confirm('Are you sure?')" style="text-align: center">
                         <input type="hidden" name="_method" value="DELETE">
@@ -60,7 +76,7 @@
                         <a href="{{ route('user-management.edit', ['id' => $user->id]) }}" class="btn btn-warning " >Edit</a>
                         
                         @if ($user->username != Auth::user()->username)
-                         <button type="submit" class="btn btn-danger ">Delete</button>
+                         <button type="submit" class="btn btn-danger " style="margin-left:3 px">Delete</button>
                         @endif
 
                     </form>

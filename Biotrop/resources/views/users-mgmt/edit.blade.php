@@ -21,10 +21,22 @@
                                                 <label for="user_type" class="col-md-2 col-md-offset-1">User Type</label>
 
                                                 <div class="col-md-6">
-                                                    <select id="user_type" type="text" class="form-control" name="user_type" value="{{ $user->user_type }}" required>
-                                                        <option>-- Select --</option>
-                                                        <option value="{{ $user->user_type }}">Operator</option>
-                                                        <option value="{{ $user->user_type }}">Verifikator</option>
+                                                    <select id="user_type" type="text" class="form-control" name="user_type"required>
+                                                        @if ($user->user_type == '0')
+                                                           <option> Admin</option>
+                                                        @elseif ($user->user_type == '1' or $user->user_type == '2')
+                                                            <option>                     
+                                                                @if($user->user_type == '0')
+                                                                    <h5> Admin</h5>
+                                                                @elseif($user->user_type == '1')
+                                                                    <h5> Operator</h5>
+                                                                @elseif($user->user_type == '2')
+                                                                    <h5> Verifikator </h5>
+                                                                @endif
+                                                            </option>
+                                                            <option value="{{$user->user_type = '1'}}">Operator</option>
+                                                            <option value="{{$user->user_type = '2'}}">Verifikator</option>
+                                                        @endif
                                                     </select>
                                                     @if ($errors->has('user_type'))
                                                         <span class="help-block">
@@ -101,7 +113,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-6 col-md-offset-4 text-right">
                                                     <button type="submit" class="btn btn-primary">Update</button>
-                                                    <button type="submit" class="btn btn-secondary" style="margin-left:10px" onclick="window.location='{{url("user-management")}}'">Cancel</button>
+                                                    <button type="button" class="btn btn-secondary"  onclick="window.location='{{ url("user-management") }}'" style="margin-left:5px">Cancel</button>
                                                 </div>
                                             </div>
                                         </form>
