@@ -57,11 +57,6 @@ class InvasiveController extends Controller
     {
         $this->validateInput($request);
          Invasive::create([
-                  // -> join ('species', 'species_id', '=', 'id_species')
-                  // -> join('genus', 'genus_id', '=', 'id_genus')
-                  // -> join('family', 'family_id', '=', 'id_family')
-                  // -> select('speciment_ias.*', 'species_id')
-                  // -> get("name_family"); => $request['family'],
             'name_family' => $request ['family'],
             'name_genus' => $request ['genus'],
             'name_species' => $request ['species'],
@@ -78,7 +73,15 @@ class InvasiveController extends Controller
             'prevention' => $request ['prevention'],
             'utilzation' => $request ['utilization'],
             'risk_analisis' => $request ['risk_analisis'],
-            'contact_person' => $request ['contact']
+            'contact_person' => $request ['contact'],
+
+           //Proses mendapatkan judul dan memindahkan letak gambar ke folder image
+            $file = $request -> file ('gambar'),      //untuk mendapatkan gambar
+            $fileName =$file -> getCLientOriginName(), // untuk mendapatkan nama asli gambar
+            $request->file('gambar')-> move("image/", $fileName), //untuk memindahka gambar ke folsder yang telah disediakan
+
+            'gambar' => $fileName,
+             save()
         ]);
         return redirect()->intended('/invasive');
     }
@@ -102,13 +105,13 @@ class InvasiveController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $speciment_ias = Invasive::find($id);
         // Redirect to user list if updating user wasn't existed
-        if ($user == null || count($user) == 0) {
+        if ($speciment_ias == null || count($speciment_ias) == 0) {
             return redirect()->intended('/invasive-management');
         }
 
-        return view('invasive/edit', ['user' => $user]);
+        return view('invasive/edit', ['speciment_ias' => $speciment_ias]);
     }
 
     /**
@@ -150,7 +153,7 @@ class InvasiveController extends Controller
      */
     public function destroy($id)
     {
-        User::where('id', $id)->delete();
+        Invasive::where('id', $id)->delete();
          return redirect()->intended('/invasive-management');
     }
 

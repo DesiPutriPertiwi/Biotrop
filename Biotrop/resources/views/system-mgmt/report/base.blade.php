@@ -7,7 +7,7 @@
         Report
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> System Mangement</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> System Management</a></li>
         <li class="active">Report</li>
       </ol>
     </section>

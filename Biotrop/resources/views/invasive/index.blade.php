@@ -1,5 +1,15 @@
 @extends('invasive.base')
 @section('action-content')
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  (function($){
+    $(function(){
+      $('.button-collapse').sideNav();
+    }); //end of document rady
+  })(jQuery); //end of jQuery name searchreplace
+</script>
+
+
     <!-- Main content -->
     <section class="content">
       <div class="box">
@@ -42,7 +52,7 @@
           <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
             <thead>
               <tr role="row">
-                <th width="5%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">No</th>
+                <th width="3%" class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Id: activate to sort column descending" aria-sort="ascending">No</th>
                 <th width="10%" class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Family: activate to sort column ascending">Family</th>
                 <th width="10%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Genus: activate to sort column ascending">Genus</th>
                 <th width="10%" class="sorting hidden-xs" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Species: activate to sort column ascending">Species Name</th>
@@ -74,7 +84,7 @@
                         <a href="{{ route('invasive.edit', ['id' => $speciment_ias->id]) }}" class="btn btn-warning">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
-                        @if ($user->username != Auth::user()->username)
+                        @if ($speciment_ias->name_species != Auth::speciment_ias()->name_species)
                          <button type="submit" class="btn btn-danger">
                           <i class="fa fa-trash" aria-hidden="true"></i>
                         </button>
@@ -113,4 +123,7 @@
     </section>
     <!-- /.content -->
   </div>
+@section('js')
+
+@show
 @endsection
